@@ -14,33 +14,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>my-view1</title>
+    <title>list.html test</title>
 
     <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../bower_components/web-component-tester/browser.js"></script>
 
     <!-- Import the element to test -->
-    <link rel="import" href="../src/my-view1.html">
+    <link rel="import" href="../src/list.html">
   </head>
   <body>
     <test-fixture id="basic">
       <template>
-        <my-view1></my-view1>
+        <polymaiap-list></polymaiap-list>
       </template>
     </test-fixture>
 
     <script>
-      suite('my-view1 tests', function() {
+      suite('list.html tests', function() {
         var home;
 
         setup(function() {
           home = fixture('basic');
         });
 
-        test('Number in circle should be 1', function() {
-          var circle = Polymer.dom(home.root).querySelector('.circle');
-          assert.equal(circle.textContent, '1');
-        })
+        suite('in general', function() {
+          test('property data is declared and is an object', function() {
+            expect(home).to.have.property('data').and.is.an.object;
+          });
+
+          test('property selectedItem is declared and is an object', function() {
+            expect(home).to.have.property('selectedItem').and.is.an.object;
+          });
+        });
       });
     </script>
   </body>

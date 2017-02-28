@@ -31,9 +31,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       pattern="/:page/:firstname"
       data="{{routeData}}"></app-route>
     <div class="card">
-      <img src$="[[item.image]]" alt="[[item.firstName]] [[item.lastName]]" />
-      <h1>[[item.firstName]] [[item.lastName]]</h1>
-      <p>[[item.position]]</p>
+      <template is="dom-if" if="{{_hasItem}}">
+        <img src$="[[item.image]]" alt="[[item.firstName]] [[item.lastName]]" />
+        <h1>[[item.firstName]] [[item.lastName]]</h1>
+        <p>[[item.position]]</p>
+      </template>
+      <template is="dom-if" if="{{!_hasItem}}">
+        <p>Employee not found or employee page accessed via URL, please return to list clicking on the link above</p>
+      </template>
     </div>
     <a href="/list">&lt; Return to Employees List</a>
   </template>
@@ -45,13 +50,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       properties: {
         item: {
           type: Object,
-          observer: '_onItemReceived'
+          observer: '_handleItemDisplay'
+        },
+
+        _hasItem: {
+          type: Boolean
         }
       },
 
-      _onItemReceived: function() {
-        console.log('item in employee page', this.item);
+      ready: function() {
+        if (!this.item) {
+          /*
+           * ERROR HANDLING
+           * Sets error if user enters employee URL directly through browser address field, and item isnt binded from list page
+           * Here a user info search can be implemented if this.route compose a valid employee path (good exercise for practicing)
+           */
+          this.set('_hasItem', false);
+        }
+      },
+
+      _handleItemDisplay: function() {
+        if (this.item) {
+          this.set('_hasItem', true);
+        } else {
+          this.set('_hasItem', false);
+        }
       }
+
     });
   </script>
 </dom-module>
