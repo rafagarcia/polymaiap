@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="polymaiap-employee">
@@ -19,11 +20,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 10px;
       }
+      div.card {
+        text-align: center;
+      }
       img {
         border-radius: 50%;
       }
       a {
         margin-left: 24px;
+        color: #757575;
+        text-decoration: none;
+      }
+      a:hover {
+        color: #212121;
+      }
+      a > span {
+        vertical-align: middle;
       }
     </style>
     <app-route
@@ -40,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <p>Employee not found or employee page accessed via URL, please return to list clicking on the link above</p>
       </template>
     </div>
-    <a href="/list">&lt; Return to Employees List</a>
+    <a href="/list"><iron-icon icon="icons:chevron-left"></iron-icon><span>Return to Employees List</span></a>
   </template>
 
   <script>

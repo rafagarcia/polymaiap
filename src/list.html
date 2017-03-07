@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymaiap-loader/polymaiap-loader.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="polymaiap-list">
@@ -64,7 +65,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       debounce-duration= "2000"
     ></iron-ajax>
     <!-- Managing components view through CSS -->
-    <polymaiap-loader id="loader" message="Loading"></polymaiap-loader>
+    <polymaiap-loader id="loader" message="Cargando"></polymaiap-loader>
     <div id="listWrapper">
       <iron-list items="[[data]]" selected-item="{{selectedItem}}" as="item" selection-enabled>
         <template>
@@ -72,7 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="item" tabindex$="[[index]]">
             <img src$="[[item.image]]" alt$="[[item.firstName]] [[item.lastName]]" />
             <span class="item__name">[[item.firstName]] [[item.lastName]]</span>
-            <span class="item__link">View employee &gt;</span>
+            <span class="item__link">View employee <iron-icon icon="icons:zoom-in"></iron-icon></span>
           </div>
         </template>
       </iron-list>
